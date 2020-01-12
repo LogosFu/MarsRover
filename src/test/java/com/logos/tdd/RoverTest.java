@@ -173,7 +173,7 @@ public class RoverTest {
   }
 
   @Test
-  public void returnCommandListWhenParsingCommandGivenCommands() {
+  public void return_command_list_when_parsing_command_given_commands() {
     String commands = "MMMLLRRLLL";
     int x = 1;
     int y = 2;
@@ -182,4 +182,19 @@ public class RoverTest {
     final List<Command> decoding = rover.decoding(commands);
     assertThat(decoding).isEqualTo(Arrays.asList(M, M, M, L, L, R, R, L, L, L));
   }
+
+  @Test
+  public void return_command_list_when_get_commands_given_commands() {
+    String commands = "MMMLLRRLLL";
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.getCommand(commands);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y+3);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
+
+  }
+
 }

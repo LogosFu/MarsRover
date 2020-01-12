@@ -6,7 +6,6 @@ import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import lombok.Getter;
 
 public class Rover {
@@ -34,5 +33,10 @@ public class Rover {
 
   public List<Command> decoding(String commands) {
     return Arrays.stream(commands.split("")).map(Command::decoding).collect(toList());
+  }
+
+  public Location getCommand(String commands) {
+    decoding(commands).forEach(this::execute);
+    return this.location;
   }
 }
