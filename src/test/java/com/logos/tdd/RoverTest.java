@@ -3,10 +3,12 @@ package com.logos.tdd;
 
 import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
+import static com.logos.tdd.type.Command.R;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
+import java.util.List;
 import org.junit.Test;
 
 public class RoverTest {
@@ -121,4 +123,59 @@ public class RoverTest {
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
   }
 
+  @Test
+  public void should_get_E_when_command_r_given_rover_direction_is_N() {
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.execute(R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
+  }
+  @Test
+  public void should_get_N_when_command_r_given_rover_direction_is_W() {
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.W;
+    final Rover rover = new Rover(x, y, direction);
+    rover.execute(R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
+  }
+  @Test
+  public void should_get_W_when_command_r_given_rover_direction_is_S() {
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.S;
+    final Rover rover = new Rover(x, y, direction);
+    rover.execute(R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
+  }
+  @Test
+  public void should_get_S_when_command_r_given_rover_direction_is_E() {
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    rover.execute(R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
+  }
+
+  @Test
+  public void returnCommandListWhenParsingCommandGivenCommands() {
+    String commands  = "MMMLLRRLLL";
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    final List<Command> decoding = rover.decoding(commands);
+
+  }
 }

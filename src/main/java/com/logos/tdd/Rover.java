@@ -2,6 +2,7 @@ package com.logos.tdd;
 
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
+import java.util.List;
 import lombok.Getter;
 
 public class Rover {
@@ -14,13 +15,20 @@ public class Rover {
   }
 
   public void execute(Command command) {
-    switch (command){
+    switch (command) {
       case M:
         location.forward();
         break;
       case L:
         location.turnLeft();
         break;
+      case R:
+        location.turnRight();
+        break;
     }
+  }
+
+  public List<Command> decoding(String commands) {
+    return null;
   }
 }

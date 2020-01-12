@@ -38,4 +38,13 @@ public class Location {
       this.direction = Direction.N;
     }
   }
+
+  public void turnRight() {
+    final int indexOfDirection = Arrays.asList(Direction.values()).indexOf(direction);
+    if (indexOfDirection != 0) {
+      this.direction = Direction.values()[indexOfDirection - 1];
+    } else {
+      this.direction = Direction.E;
+    }
+  }
 }
