@@ -8,6 +8,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.Test;
 
@@ -134,6 +135,7 @@ public class RoverTest {
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
   }
+
   @Test
   public void should_get_N_when_command_r_given_rover_direction_is_W() {
     int x = 1;
@@ -145,6 +147,7 @@ public class RoverTest {
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
   }
+
   @Test
   public void should_get_W_when_command_r_given_rover_direction_is_S() {
     int x = 1;
@@ -156,6 +159,7 @@ public class RoverTest {
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
   }
+
   @Test
   public void should_get_S_when_command_r_given_rover_direction_is_E() {
     int x = 1;
@@ -170,12 +174,12 @@ public class RoverTest {
 
   @Test
   public void returnCommandListWhenParsingCommandGivenCommands() {
-    String commands  = "MMMLLRRLLL";
+    String commands = "MMMLLRRLLL";
     int x = 1;
     int y = 2;
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
     final List<Command> decoding = rover.decoding(commands);
-
+    assertThat(decoding).isEqualTo(Arrays.asList(M, M, M, L, L, R, R, L, L, L));
   }
 }
