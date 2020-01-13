@@ -1,6 +1,7 @@
 package com.logos.tdd;
 
 import com.logos.tdd.type.Direction;
+import java.util.function.Function;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,11 +13,24 @@ public class Location {
   private Integer y;
   private Direction direction;
 
-  public Location addY() {
-    return Location.builder().direction(direction).x(x).y(y + 1).build();
-  }
+  public static Function<Location, Location> addY = location -> Location.builder()
+      .direction(location.getDirection())
+      .x(location.getX())
+      .y(location.getY() + 1).build();
 
-  public Location addX() {
-    return Location.builder().direction(direction).x(x + 1).y(y).build();
-  }
+  public static Function<Location, Location> addX = location -> Location.builder()
+      .direction(location.getDirection())
+      .x(location.getX() + 1)
+      .y(location.getY()).build();
+
+
+  public static Function<Location, Location> subX = location -> Location.builder()
+      .direction(location.getDirection())
+      .x(location.getX() - 1)
+      .y(location.getY()).build();
+
+  public static Function<Location, Location> subY = location -> Location.builder()
+      .direction(location.getDirection())
+      .x(location.getX())
+      .y(location.getY() - 1).build();
 }
