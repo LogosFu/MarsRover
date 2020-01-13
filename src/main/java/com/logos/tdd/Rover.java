@@ -35,8 +35,7 @@ public class Rover {
     return Arrays.stream(commands.split("")).map(Command::decoding).collect(toList());
   }
 
-  public Location getCommand(String commands) {
+  public void getCommand(String commands) {
     decoding(commands).forEach(this::execute);
-    return this.location;
   }
 }
