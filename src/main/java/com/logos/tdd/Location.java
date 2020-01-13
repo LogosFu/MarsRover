@@ -32,19 +32,11 @@ public class Location {
 
   public void turnLeft() {
     final int indexOfDirection = Arrays.asList(Direction.values()).indexOf(direction);
-    if (indexOfDirection + 1 < Direction.values().length) {
-      this.direction = Direction.values()[indexOfDirection + 1];
-    } else {
-      this.direction = Direction.N;
-    }
+    this.direction = Direction.values()[(indexOfDirection + 1) %4 ];
   }
 
   public void turnRight() {
     final int indexOfDirection = Arrays.asList(Direction.values()).indexOf(direction);
-    if (indexOfDirection != 0) {
-      this.direction = Direction.values()[indexOfDirection - 1];
-    } else {
-      this.direction = Direction.E;
-    }
+    this.direction = Direction.values()[(indexOfDirection + 3) %4];
   }
 }
