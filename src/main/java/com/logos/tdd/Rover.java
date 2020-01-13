@@ -7,9 +7,12 @@ import static com.logos.tdd.type.Direction.W;
 
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import lombok.Getter;
 
 public class Rover {
@@ -28,7 +31,7 @@ public class Rover {
 
 
   public void command(Command command) {
-    switch (command){
+    switch (command) {
       case M:
         this.location = forwardFuncMap.get(this.location.getDirection()).apply(this.location);
         break;
@@ -40,5 +43,9 @@ public class Rover {
         break;
 
     }
+  }
+
+  public List<Command> decoding(String commands) {
+    return Arrays.stream(commands.split("")).map(Command::parse).collect(Collectors.toList());
   }
 }

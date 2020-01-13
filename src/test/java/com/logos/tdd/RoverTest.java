@@ -3,11 +3,14 @@ package com.logos.tdd;
 
 import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
+import static com.logos.tdd.type.Command.R;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
 
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
+import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 
 public class RoverTest {
@@ -126,5 +129,16 @@ public class RoverTest {
     assertThat(rover.getLocation().getX()).isEqualTo(x );
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
+  }
+
+  @Test
+  public void return_command_list_when_parsing_command_given_commands() {
+    String commands = "MMMLLRRLLL";
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    final List<Command> decoding = rover.decoding(commands);
+    assertThat(decoding).isEqualTo(Arrays.asList(M, M, M, L, L, R, R, L, L, L));
   }
 }
