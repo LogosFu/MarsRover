@@ -22,4 +22,30 @@ public class RoverTest {
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
   }
+
+  @Test
+  public void should_add_y_when_forward_given_rover_direction_is_n() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.M);
+
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(Integer.sum(y , 1));
+    assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
+  }
+  @Test
+  public void should_add_x_when_forward_given_rover_direction_is_e() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.M);
+
+    assertThat(rover.getLocation().getX()).isEqualTo(x +1);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
+  }
+
 }

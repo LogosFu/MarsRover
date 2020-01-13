@@ -13,4 +13,16 @@ public class Rover {
     location = Location.builder().x(x).y(y).direction(direction).build();
   }
 
+  public void command(Command command) {
+    if (command == Command.M) {
+      switch (location.getDirection()){
+        case N:
+          location = location.addY();
+          break;
+        case E:
+          location = location.addX();
+          break;
+      }
+    }
+  }
 }
