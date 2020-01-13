@@ -73,4 +73,58 @@ public class RoverTest {
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
   }
+
+  @Test
+  public void should_return_w_when_veer_l_given_rover_direction_is_n() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.L);
+
+    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
+  }
+
+  @Test
+  public void should_return_s_when_veer_l_given_rover_direction_is_w() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.W;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.L);
+
+    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
+  }
+
+  @Test
+  public void should_return_e_when_veer_l_given_rover_direction_is_s() {
+
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.S;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.L);
+
+    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
+
+  }
+
+  @Test
+  public void should_return_n_when_veer_l_given_rover_direction_is_e() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.L);
+
+    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
+  }
 }

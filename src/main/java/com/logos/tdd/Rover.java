@@ -26,9 +26,19 @@ public class Rover {
     forwardFuncMap.put(S, Location.subY);
   }
 
+
   public void command(Command command) {
-    if (command == Command.M) {
-      this.location = forwardFuncMap.get(this.location.getDirection()).apply(this.location);
+    switch (command){
+      case M:
+        this.location = forwardFuncMap.get(this.location.getDirection()).apply(this.location);
+        break;
+      case L:
+        this.location = Location.TurnLeft.apply(this.location);
+        break;
+      case R:
+        this.location = Location.TurnRight.apply(this.location);
+        break;
+
     }
   }
 }
