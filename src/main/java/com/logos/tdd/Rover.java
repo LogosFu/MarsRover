@@ -10,17 +10,7 @@ public class Rover {
   private Location location;
 
   public Rover(Integer x, Integer y, Direction direction) {
-    this.location = Location.builder().x(x).y(y).direction(direction).build();
+    location = Location.builder().x(x).y(y).direction(direction).build();
   }
 
-  public void execute(Command command) {
-    switch (command){
-      case M:
-        location.forward();
-        break;
-      case L:
-        location.turnLeft();
-        break;
-    }
-  }
 }
