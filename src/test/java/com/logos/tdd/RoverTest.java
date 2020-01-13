@@ -35,9 +35,10 @@ public class RoverTest {
     rover.command(Command.M);
 
     assertThat(rover.getLocation().getX()).isEqualTo(x);
-    assertThat(rover.getLocation().getY()).isEqualTo(Integer.sum(y , 1));
+    assertThat(rover.getLocation().getY()).isEqualTo(Integer.sum(y, 1));
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
   }
+
   @Test
   public void should_add_x_when_forward_given_rover_direction_is_e() {
     Integer x = 0;
@@ -46,7 +47,7 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.M);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x +1);
+    assertThat(rover.getLocation().getX()).isEqualTo(x + 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
   }
@@ -59,8 +60,8 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.M);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
-    assertThat(rover.getLocation().getY()).isEqualTo(y -1);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y - 1);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
   }
 
@@ -72,7 +73,7 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.M);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x -1);
+    assertThat(rover.getLocation().getX()).isEqualTo(x - 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
   }
@@ -85,7 +86,7 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
   }
@@ -98,7 +99,7 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
   }
@@ -112,7 +113,7 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
 
@@ -126,7 +127,7 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
 
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
   }
@@ -140,5 +141,19 @@ public class RoverTest {
     final Rover rover = new Rover(x, y, direction);
     final List<Command> decoding = rover.decoding(commands);
     assertThat(decoding).isEqualTo(Arrays.asList(M, M, M, L, L, R, R, L, L, L));
+  }
+
+  @Test
+  public void return_command_list_when_get_commands_given_commands() {
+    String commands = "MMMLLRRLLL";
+    int x = 1;
+    int y = 2;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    final Location location = rover.getCommand(commands);
+    assertThat(location.getX()).isEqualTo(x);
+    assertThat(location.getY()).isEqualTo(y + 3);
+    assertThat(location.getDirection()).isEqualTo(Direction.E);
+
   }
 }

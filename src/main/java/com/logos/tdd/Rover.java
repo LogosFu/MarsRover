@@ -48,4 +48,9 @@ public class Rover {
   public List<Command> decoding(String commands) {
     return Arrays.stream(commands.split("")).map(Command::parse).collect(Collectors.toList());
   }
+
+  public Location getCommand(String commands) {
+    decoding(commands).forEach(this::command);
+    return this.location;
+  }
 }
