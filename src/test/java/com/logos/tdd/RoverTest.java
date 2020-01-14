@@ -24,7 +24,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldAddYWhenForwardGivenRoverDirectionIsN() {
+  public void should_add_y_when_forward_given_rover_direction_is_n() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.N;
@@ -36,7 +36,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldAddXWhenForwardGivenRoverDirectionIsE() {
+  public void should_add_x_when_forward_given_rover_direction_is_e() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.E;
@@ -48,7 +48,7 @@ public class RoverTest {
   }
 
   @Test
-  public void ShouldSubYWhenForwardGivenRoverDirectionIsS() {
+  public void should_sub_y_when_forward_given_rover_direction_is_s() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.S;
@@ -60,7 +60,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldSubXWhenForwardGivenRoverDirectionIsW() {
+  public void should_sub_x_when_forward_given_rover_direction_is_w() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.W;
@@ -72,7 +72,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnWWhenVeerLGivenRoverDirectionIsN() {
+  public void should_return_w_when_veer_l_given_rover_direction_is_n() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.N;
@@ -84,7 +84,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnSWhenVeerLGivenRoverDirectionIsW() {
+  public void should_return_s_when_veer_l_given_rover_direction_is_w() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.W;
@@ -96,7 +96,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnEWhenVeerLGivenRoverDirectionIsS() {
+  public void should_return_e_when_veer_l_given_rover_direction_is_s() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.S;
@@ -108,7 +108,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnNWhenVeerLGivenRoverDirectionIsE() {
+  public void should_return_n_when_veer_l_given_rover_direction_is_e() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.E;
@@ -120,7 +120,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnEWhenVeerRGivenRoverDirectionIsN() {
+  public void should_return_e_when_veer_r_given_rover_direction_is_n() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.N;
@@ -132,7 +132,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnNWhenVeerRGivenRoverDirectionIsW() {
+  public void should_return_n_when_veer_r_given_rover_direction_is_w() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.W;
@@ -144,7 +144,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnWWhenVeerRGivenRoverDirectionIsS() {
+  public void should_return_w_when_veer_r_given_rover_direction_is_s() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.S;
@@ -156,7 +156,7 @@ public class RoverTest {
   }
 
   @Test
-  public void shouldReturnSWhenVeerRGivenRoverDirectionIsE() {
+  public void should_return_s_when_veer_r_given_rover_direction_is_e() {
     Integer x = 0;
     Integer y = 0;
     Direction direction = Direction.E;
@@ -165,5 +165,18 @@ public class RoverTest {
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
+  }
+
+  @Test
+  public void should_return_location_when_send_command_given_command() {
+    String commands ="MMMMLLLRRRMMM";
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.commands(commands);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y+7);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
   }
 }
