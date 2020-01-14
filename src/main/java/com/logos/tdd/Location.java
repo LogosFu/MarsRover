@@ -26,4 +26,8 @@ public class Location {
   public static Function<Location, Location> getSouthFront = location -> Location.builder()
       .x(location.getX()).y(location.getY() - 1).direction(location.getDirection()).build();
 
+  public static Function<Location, Location> getTurnLeft = l -> Location.builder()
+      .x(l.getX()).y(l.getY()).direction(Direction.parse((l.getDirection().getCode() + 1) % 4))
+      .build();
+
 }

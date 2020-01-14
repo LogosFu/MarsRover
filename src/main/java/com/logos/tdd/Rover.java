@@ -1,5 +1,6 @@
 package com.logos.tdd;
 
+import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
 
 import com.logos.tdd.type.Command;
@@ -27,6 +28,9 @@ public class Rover {
   public void command(Command command) {
     if (command == M) {
       location = functionMap.get(location.getDirection()).apply(location);
+    }
+    if (command == L){
+      location = Location.getTurnLeft.apply(location);
     }
   }
 }
