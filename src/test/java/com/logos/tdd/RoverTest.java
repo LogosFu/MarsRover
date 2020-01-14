@@ -5,7 +5,6 @@ import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
 import static com.logos.tdd.type.Command.R;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
 
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
