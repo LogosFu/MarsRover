@@ -30,4 +30,8 @@ public class Location {
       .x(l.getX()).y(l.getY()).direction(Direction.parse((l.getDirection().getCode() + 1) % 4))
       .build();
 
+  public static Function<Location, Location> getTurnRight = l -> Location.builder()
+      .x(l.getX()).y(l.getY()).direction(Direction.parse((l.getDirection().getCode() + 3) % 4))
+      .build();
+
 }

@@ -78,7 +78,7 @@ public class RoverTest {
     Direction direction = Direction.N;
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
   }
@@ -90,7 +90,7 @@ public class RoverTest {
     Direction direction = Direction.W;
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
   }
@@ -102,7 +102,7 @@ public class RoverTest {
     Direction direction = Direction.S;
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
   }
@@ -114,8 +114,56 @@ public class RoverTest {
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
     rover.command(Command.L);
-    assertThat(rover.getLocation().getX()).isEqualTo(x );
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
+  }
+
+  @Test
+  public void shouldReturnEWhenVeerRGivenRoverDirectionIsN() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
+  }
+
+  @Test
+  public void shouldReturnNWhenVeerRGivenRoverDirectionIsW() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.W;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
+  }
+
+  @Test
+  public void shouldReturnWWhenVeerRGivenRoverDirectionIsS() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.S;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
+  }
+
+  @Test
+  public void shouldReturnSWhenVeerRGivenRoverDirectionIsE() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.R);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
   }
 }
