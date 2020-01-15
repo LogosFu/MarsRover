@@ -1,6 +1,7 @@
 package com.logos.tdd;
 
 import static com.logos.tdd.type.Command.B;
+import static com.logos.tdd.type.Command.H;
 import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
 import static com.logos.tdd.type.Command.R;
@@ -37,6 +38,8 @@ public class Rover {
   public void command(Command command) {
     if (command == B) {
       functionMap = LocationMove.getBackMap();
+    } else if (command == H) {
+      functionMap = LocationMove.getForwardMap();
     } else {
       location = commandFunctionMap.get(command).apply(location);
     }

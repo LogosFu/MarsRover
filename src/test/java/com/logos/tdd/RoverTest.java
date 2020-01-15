@@ -29,6 +29,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.N;
     final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.H);
     rover.command(Command.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y + 1);
@@ -41,6 +43,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.H);
     rover.command(Command.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x + 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -53,6 +57,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.S;
     final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.H);
     rover.command(Command.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y - 1);
@@ -65,6 +71,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.W;
     final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.H);
     rover.command(Command.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x - 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
