@@ -179,4 +179,56 @@ public class RoverTest {
     assertThat(rover.getLocation().getY()).isEqualTo(y+7);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
   }
+
+  @Test
+  public void should_sub_y_when_back_given_rover_direction_is_n() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.M);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y - 1);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
+  }
+
+  @Test
+  public void should_sub_x_when_back_given_rover_direction_is_e() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.E;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.M);
+    assertThat(rover.getLocation().getX()).isEqualTo(x - 1);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
+  }
+
+  @Test
+  public void should_add_y_when_back_given_rover_direction_is_s() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.S;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.M);
+    assertThat(rover.getLocation().getX()).isEqualTo(x);
+    assertThat(rover.getLocation().getY()).isEqualTo(y + 1);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
+  }
+
+  @Test
+  public void should_add_x_when_back_given_rover_direction_is_w() {
+    Integer x = 0;
+    Integer y = 0;
+    Direction direction = Direction.W;
+    final Rover rover = new Rover(x, y, direction);
+    rover.command(Command.B);
+    rover.command(Command.M);
+    assertThat(rover.getLocation().getX()).isEqualTo(x + 1);
+    assertThat(rover.getLocation().getY()).isEqualTo(y);
+    assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
+  }
 }

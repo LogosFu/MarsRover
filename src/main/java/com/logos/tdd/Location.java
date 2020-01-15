@@ -10,5 +10,5 @@ public class Location {
 
   private Integer x;
   private Integer y;
-  private Direction direction;
+  Direction direction;
 }

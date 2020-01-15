@@ -1,5 +1,6 @@
 package com.logos.tdd;
 
+import static com.logos.tdd.type.Command.B;
 import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
 import static com.logos.tdd.type.Command.R;
@@ -16,27 +17,28 @@ public class Rover {
 
   @Getter
   private Location location;
+  private static Map<Direction, Function<Location, Location>> functionMap = new HashMap<>();
+  private static Map<Command, Function<Location, Location>> commandFunctionMap = new HashMap<>();
 
-  private Map<Direction, Function<Location, Location>> functionMap = new HashMap<>();
+  private static Function<Location, Location> moveAction = locationGiven -> functionMap
+      .get(locationGiven.getDirection()).apply(locationGiven);
+  private static Function<Location, Location> turnRightAction = LocationMove.getTurnRight;
+  private static Function<Location, Location> turnLeftAction = LocationMove.getTurnLeft;
+
 
   public Rover(Integer x, Integer y, Direction direction) {
     location = Location.builder().x(x).y(y).direction(direction).build();
-    functionMap.put(Direction.N, LocationMove.getNorthFront);
-    functionMap.put(Direction.S, LocationMove.getSouthFront);
-    functionMap.put(Direction.W, LocationMove.getWestFront);
-    functionMap.put(Direction.E, LocationMove.getEastFront);
+    functionMap = LocationMove.getForwardMap();
+    commandFunctionMap.put(M, moveAction);
+    commandFunctionMap.put(L, turnLeftAction);
+    commandFunctionMap.put(R, turnRightAction);
   }
 
   public void command(Command command) {
-    if (command == M) {
-      location = functionMap.get(location.getDirection()).apply(location);
-    }
-    if (command == L) {
-      location = LocationMove.getTurnLeft.apply(location);
-    }
-
-    if (command == R) {
-      location = LocationMove.getTurnRight.apply(location);
+    if (command == B) {
+      functionMap = LocationMove.getBackMap();
+    } else {
+      location = commandFunctionMap.get(command).apply(location);
     }
   }
 
