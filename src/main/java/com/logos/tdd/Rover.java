@@ -8,10 +8,8 @@ import com.logos.tdd.type.Command;
 import com.logos.tdd.type.Direction;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import lombok.Getter;
 
 public class Rover {
@@ -23,10 +21,10 @@ public class Rover {
 
   public Rover(Integer x, Integer y, Direction direction) {
     location = Location.builder().x(x).y(y).direction(direction).build();
-    functionMap.put(Direction.N, Location.getNorthFront);
-    functionMap.put(Direction.S, Location.getSouthFront);
-    functionMap.put(Direction.W, Location.getWestFront);
-    functionMap.put(Direction.E, Location.getEastFront);
+    functionMap.put(Direction.N, LocationMove.getNorthFront);
+    functionMap.put(Direction.S, LocationMove.getSouthFront);
+    functionMap.put(Direction.W, LocationMove.getWestFront);
+    functionMap.put(Direction.E, LocationMove.getEastFront);
   }
 
   public void command(Command command) {
@@ -34,11 +32,11 @@ public class Rover {
       location = functionMap.get(location.getDirection()).apply(location);
     }
     if (command == L) {
-      location = Location.getTurnLeft.apply(location);
+      location = LocationMove.getTurnLeft.apply(location);
     }
 
     if (command == R) {
-      location = Location.getTurnRight.apply(location);
+      location = LocationMove.getTurnRight.apply(location);
     }
   }
 
