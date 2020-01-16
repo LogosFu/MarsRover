@@ -6,6 +6,9 @@ import static com.logos.tdd.type.Command.L;
 import static com.logos.tdd.type.Command.M;
 import static com.logos.tdd.type.Command.R;
 
+import com.logos.tdd.moving.BackMovingFunctions;
+import com.logos.tdd.moving.ForwardMovingFunctions;
+import com.logos.tdd.moving.MovingFunctions;
 import com.logos.tdd.type.Command;
 import com.logos.tdd.type.CommandType;
 import com.logos.tdd.type.Direction;
@@ -19,18 +22,16 @@ public class Rover {
 
   @Getter
   private Location location;
-  private static Map<Direction, Function<Location, Location>> moveActionMap = new HashMap<>();
   private static Map<Command, Function<Location, Location>> commandFunctionMap = new HashMap<>();
-
-  private static Function<Location, Location> moveAction = locationGiven -> moveActionMap
-      .get(locationGiven.getDirection()).apply(locationGiven);
+  private static MovingFunctions movingFunctions;
+  private static Function<Location, Location> moveAction = locationGiven ->  movingFunctions.getMovingFunction(locationGiven.getDirection()).apply(locationGiven);
   private static Function<Location, Location> turnRightAction = Location.getTurnRight;
   private static Function<Location, Location> turnLeftAction = Location.getTurnLeft;
 
 
   public Rover(Integer x, Integer y, Direction direction) {
     location = Location.builder().x(x).y(y).direction(direction).build();
-    moveActionMap = LocationMove.getForwardMap();
+    movingFunctions = ForwardMovingFunctions.getInstance();
     commandFunctionMap.put(M, moveAction);
     commandFunctionMap.put(L, turnLeftAction);
     commandFunctionMap.put(R, turnRightAction);
@@ -46,9 +47,9 @@ public class Rover {
 
   private void changeMoveAction(Command command) {
     if (command == B) {
-      moveActionMap = LocationMove.getBackMap();
+      movingFunctions = BackMovingFunctions.getInstance();
     } else if (command == H) {
-      moveActionMap = LocationMove.getForwardMap();
+      movingFunctions = ForwardMovingFunctions.getInstance();
     }
   }
 

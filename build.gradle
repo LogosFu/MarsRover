@@ -18,4 +18,5 @@ dependencies {
     testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
     annotationProcessor 'org.projectlombok:lombok:1.18.2'
     compileOnly 'org.projectlombok:lombok:1.18.2'
+    compileOnly group: 'com.github.peichhorn', name: 'lombok-pg', version: '0.11.3'
 }
