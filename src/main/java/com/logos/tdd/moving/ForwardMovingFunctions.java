@@ -18,7 +18,6 @@ public class ForwardMovingFunctions implements MovingFunctions {
   }
 
   private ForwardMovingFunctions() {
-
   }
 
   public static ForwardMovingFunctions getInstance() {
@@ -29,7 +28,6 @@ public class ForwardMovingFunctions implements MovingFunctions {
 
     private static final ForwardMovingFunctions instance = new ForwardMovingFunctions();
   }
-
 
   @Override
   public Function<Location, Location> getMovingFunction(Direction direction) {
