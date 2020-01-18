@@ -1,7 +1,7 @@
 package com.logos.tdd.moving;
 
-import com.logos.tdd.Location;
-import com.logos.tdd.type.Direction;
+import com.logos.tdd.map.Location;
+import com.logos.tdd.map.Direction;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;

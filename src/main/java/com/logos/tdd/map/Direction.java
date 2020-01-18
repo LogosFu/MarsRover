@@ -1,4 +1,4 @@
-package com.logos.tdd.type;
+package com.logos.tdd.map;
 
 import lombok.Getter;
 

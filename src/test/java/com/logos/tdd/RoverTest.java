@@ -1,13 +1,11 @@
 package com.logos.tdd;
 
 
-import static com.logos.tdd.type.Command.L;
-import static com.logos.tdd.type.Command.M;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.InstanceOfAssertFactories.predicate;
 
-import com.logos.tdd.type.Command;
-import com.logos.tdd.type.Direction;
+import com.logos.tdd.rover.Rover;
+import com.logos.tdd.rover.CommandType;
+import com.logos.tdd.map.Direction;
 import org.junit.Test;
 
 public class RoverTest {
@@ -29,9 +27,9 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.N;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.H);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.H);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y + 1);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -43,9 +41,9 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.H);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.H);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x + 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -57,9 +55,9 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.S;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.H);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.H);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y - 1);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -71,9 +69,9 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.W;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.H);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.H);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x - 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -85,7 +83,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.N;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.L);
+    rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
@@ -97,7 +95,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.W;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.L);
+    rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
@@ -109,7 +107,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.S;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.L);
+    rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
@@ -121,7 +119,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.L);
+    rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
@@ -133,7 +131,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.N;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.R);
+    rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.E);
@@ -145,7 +143,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.W;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.R);
+    rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.N);
@@ -157,7 +155,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.S;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.R);
+    rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.W);
@@ -169,7 +167,7 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.R);
+    rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(Direction.S);
@@ -194,8 +192,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.N;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y - 1);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -207,8 +205,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.E;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x - 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -220,8 +218,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.S;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y + 1);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -233,8 +231,8 @@ public class RoverTest {
     Integer y = 0;
     Direction direction = Direction.W;
     final Rover rover = new Rover(x, y, direction);
-    rover.command(Command.B);
-    rover.command(Command.M);
+    rover.command(CommandType.B);
+    rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x + 1);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
