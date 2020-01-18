@@ -24,6 +24,7 @@ public class Rover {
   @Getter
   private Location location;
   private RoverDropInGutterListener dropInGutterListener;
+  private Boolean isInGutter;
   private static Map<CommandType, Function<Location, Location>> commandFunctionMap = new HashMap<>();
   private static MovingFunctions movingFunctions;
   private static Function<Location, Location> moveAction = locationGiven -> movingFunctions
@@ -36,6 +37,7 @@ public class Rover {
       RoverDropInGutterListener dropInGutterListener) {
     this.location = Location.builder().x(x).y(y).direction(direction).build();
     this.dropInGutterListener = dropInGutterListener;
+    this.isInGutter = Boolean.FALSE;
     movingFunctions = ForwardMovingFunctions.getInstance();
     commandFunctionMap.put(M, moveAction);
     commandFunctionMap.put(L, turnLeftAction);
@@ -43,6 +45,9 @@ public class Rover {
   }
 
   public void command(CommandType commandType) {
+    if (this.isInGutter) {
+      return;
+    }
     if (CommandGroup.isChangeModelCommand(commandType)) {
       changeMoveAction(commandType);
     }
@@ -63,6 +68,7 @@ public class Rover {
 
   private void checkIsDropInGutter() {
     if (MapUtil.checkDropInGutter(location)) {
+      this.isInGutter = Boolean.TRUE;
       if (Objects.nonNull(dropInGutterListener)) {
         dropInGutterListener.dropInGutter(location);
       }

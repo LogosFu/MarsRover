@@ -273,4 +273,26 @@ public class RoverTest {
     verify(listener).dropInGutter(Location.builder().x(x).y(y + 2).direction(direction).build());
   }
 
+  @Test
+  public void should_do_nothing_when_get_command_given_rover_in_gutter() {
+
+    final RoverDropInGutterListener listener = mock(RoverDropInGutterListener.class);
+
+    int x = 0;
+    int y = 0;
+    Direction direction = Direction.N;
+    final Rover rover = new Rover(x, y, direction, listener);
+    PowerMockito.mockStatic(MapUtil.class);
+    when(MapUtil.checkDropInGutter(Location.builder().x(x).y(y + 1).direction(direction).build()))
+        .thenReturn(false);
+    when(MapUtil.checkDropInGutter(Location.builder().x(x).y(y + 2).direction(direction).build()))
+        .thenReturn(true);
+    rover.commands("MM");
+    assertThat(rover.getLocation()).isEqualToComparingFieldByField(
+        Location.builder().x(x).y(y + 2).direction(direction).build());
+    rover.commands("RRRMMLL");
+    assertThat(rover.getLocation()).isEqualToComparingFieldByField(
+        Location.builder().x(x).y(y + 2).direction(direction).build());
+
+  }
 }
