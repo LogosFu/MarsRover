@@ -14,6 +14,7 @@ import com.logos.tdd.moving.ForwardMovingFunctions;
 import com.logos.tdd.moving.MovingFunctions;
 import com.logos.tdd.util.MapUtil;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -25,6 +26,7 @@ public class Rover {
   private Location location;
   private RoverDropInGutterListener dropInGutterListener;
   private Boolean isInGutter;
+  private List<Location> gutterLocations;
   private static Map<CommandType, Function<Location, Location>> commandFunctionMap = new HashMap<>();
   private static MovingFunctions movingFunctions;
   private static Function<Location, Location> moveAction = locationGiven -> movingFunctions
@@ -34,10 +36,11 @@ public class Rover {
 
 
   public Rover(Integer x, Integer y, Direction direction,
-      RoverDropInGutterListener dropInGutterListener) {
+      RoverDropInGutterListener dropInGutterListener, List<Location> gutterLocations) {
     this.location = Location.builder().x(x).y(y).direction(direction).build();
     this.dropInGutterListener = dropInGutterListener;
     this.isInGutter = Boolean.FALSE;
+    this.gutterLocations = gutterLocations;
     movingFunctions = ForwardMovingFunctions.getInstance();
     commandFunctionMap.put(M, moveAction);
     commandFunctionMap.put(L, turnLeftAction);
@@ -52,7 +55,11 @@ public class Rover {
       changeMoveAction(commandType);
     }
     if (CommandGroup.isChangeLocationCommand(commandType)) {
-      location = commandFunctionMap.get(commandType).apply(location);
+      final Location locationNew = commandFunctionMap.get(commandType).apply(this.location);
+      if (gutterLocations.stream().anyMatch(gutter -> gutter.isSamePlace(locationNew))) {
+        return;
+      }
+      this.location = locationNew;
       checkIsDropInGutter();
     }
   }
@@ -62,7 +69,6 @@ public class Rover {
       movingFunctions = BackMovingFunctions.getInstance();
     } else if (commandType == H) {
       movingFunctions = ForwardMovingFunctions.getInstance();
-
     }
   }
 

@@ -56,3 +56,8 @@ shouldDoNothingWhenGetCommandGivenRoverInGutter
 
 ##8. headquarters 
 shouldSendNewRoverWhenReceiveRoverInGutterGivenHeadquartersGetRoverInGutter
+
+##9.Map
+shouldIgnoreCommandWhenForwardGivenCommandToGutter
+shouldIgnoreCommandWhenBackGivenCommandToGutter
+

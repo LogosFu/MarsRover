@@ -2,8 +2,8 @@ package com.logos.tdd;
 
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.validateMockitoUsage;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -13,9 +13,12 @@ import com.logos.tdd.rover.Rover;
 import com.logos.tdd.rover.CommandType;
 import com.logos.tdd.map.Direction;
 import com.logos.tdd.util.MapUtil;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
@@ -31,7 +34,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
     assertThat(rover.getLocation().getDirection()).isEqualTo(direction);
@@ -42,7 +45,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.H);
     rover.command(CommandType.M);
@@ -56,7 +59,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.E;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.H);
     rover.command(CommandType.M);
@@ -70,7 +73,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.S;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.H);
     rover.command(CommandType.M);
@@ -84,7 +87,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.W;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.H);
     rover.command(CommandType.M);
@@ -98,7 +101,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -110,7 +113,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.W;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -122,7 +125,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.S;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -134,7 +137,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.E;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.L);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -146,7 +149,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -158,7 +161,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.W;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -170,7 +173,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.S;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -182,7 +185,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.E;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.R);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y);
@@ -195,7 +198,9 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
+    PowerMockito.mockStatic(MapUtil.class);
+    when(MapUtil.checkDropInGutter(any(Location.class))).thenReturn(Boolean.FALSE);
     rover.commands(commands);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
     assertThat(rover.getLocation().getY()).isEqualTo(y + 7);
@@ -207,7 +212,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
@@ -220,7 +225,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.E;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x - 1);
@@ -233,7 +238,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.S;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x);
@@ -246,7 +251,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.W;
-    final Rover rover = new Rover(x, y, direction, null);
+    final Rover rover = new Rover(x, y, direction, null, new ArrayList<>());
     rover.command(CommandType.B);
     rover.command(CommandType.M);
     assertThat(rover.getLocation().getX()).isEqualTo(x + 1);
@@ -262,7 +267,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, listener);
+    final Rover rover = new Rover(x, y, direction, listener, new ArrayList<>());
     PowerMockito.mockStatic(MapUtil.class);
     when(MapUtil.checkDropInGutter(Location.builder().x(x).y(y + 1).direction(direction).build()))
         .thenReturn(false);
@@ -281,7 +286,7 @@ public class RoverTest {
     int x = 0;
     int y = 0;
     Direction direction = Direction.N;
-    final Rover rover = new Rover(x, y, direction, listener);
+    final Rover rover = new Rover(x, y, direction, listener, new ArrayList<>());
     PowerMockito.mockStatic(MapUtil.class);
     when(MapUtil.checkDropInGutter(Location.builder().x(x).y(y + 1).direction(direction).build()))
         .thenReturn(false);
@@ -293,6 +298,23 @@ public class RoverTest {
     rover.commands("RRRMMLL");
     assertThat(rover.getLocation()).isEqualToComparingFieldByField(
         Location.builder().x(x).y(y + 2).direction(direction).build());
+  }
 
+  @Test
+  public void should_ignore_command_when_forward_given_command_to_gutter() {
+    int x = 0;
+    int y = 0;
+    Direction direction = Direction.N;
+    final List<Location> locations = Collections
+        .singletonList(Location.builder().x(x).y(y + 2).direction(direction).build());
+    final Rover rover = new Rover(x, y, direction, null, locations);
+    PowerMockito.mockStatic(MapUtil.class);
+    when(MapUtil.checkDropInGutter(Location.builder().x(x).y(y + 1).direction(direction).build()))
+        .thenReturn(false);
+    when(MapUtil.checkDropInGutter(Location.builder().x(x).y(y + 2).direction(direction).build()))
+        .thenReturn(true);
+    rover.commands("MM");
+    assertThat(rover.getLocation()).isEqualToComparingFieldByField(
+        Location.builder().x(x).y(y + 1).direction(direction).build());
   }
 }

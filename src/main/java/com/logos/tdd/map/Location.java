@@ -30,4 +30,8 @@ public class Location {
   public static final Function<Location, Location> getTurnRight = l -> Location.builder()
       .x(l.getX()).y(l.getY()).direction(Direction.parse((l.getDirection().getCode() + 3) % 4))
       .build();
+
+  public boolean isSamePlace(Location locationNew) {
+    return locationNew.getX() == this.x && locationNew.getY() == this.y;
+  }
 }
