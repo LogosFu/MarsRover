@@ -10,8 +10,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Location {
 
-  private Integer x;
-  private Integer y;
+  private int x;
+  private int y;
   Direction direction;
 
   public static final Function<Location, Location> addY = location -> new Location(location.getX(),

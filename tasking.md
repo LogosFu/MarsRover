@@ -47,3 +47,12 @@ shouldReturnSWhenVeerRGivenRoverDirectionIsE
 ##6.Integration
 
 shouldReturnLocationWhenSendCommandGivenCommand
+
+##7.DropInGutter
+
+shouldSendDropInGutterMessageWhenMoveGivenGutterFront
+
+shouldDoNothingWhenGetCommandGivenRoverInGutter
+
+##8. headquarters 
+shouldSendNewRoverWhenReceiveRoverInGutterGivenHeadquartersGetRoverInGutter

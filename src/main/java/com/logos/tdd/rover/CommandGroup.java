@@ -13,11 +13,11 @@ public enum CommandGroup {
     }
   }
 
-  public static Boolean isChangeModelCommand(CommandType commandType) {
+  public static boolean isChangeModelCommand(CommandType commandType) {
     return CommandGroup.checkGroupOfCommand(commandType) == CHANGE_MODEL;
   }
 
-  public static Boolean isChangeLocationCommand(CommandType commandType) {
+  public static boolean isChangeLocationCommand(CommandType commandType) {
     return CommandGroup.checkGroupOfCommand(commandType) == CHANGE_LOCATION;
   }
 }
