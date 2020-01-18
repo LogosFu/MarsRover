@@ -16,9 +16,11 @@ public class Location {
 
   public static final Function<Location, Location> addY = location -> new Location(location.getX(),
       location.getY() + 1, location.getDirection());
-  public static final Function<Location, Location> addX = location -> new Location(location.getX() + 1,
+  public static final Function<Location, Location> addX = location -> new Location(
+      location.getX() + 1,
       location.getY(), location.getDirection());
-  public static final Function<Location, Location> subX = location -> new Location(location.getX() - 1,
+  public static final Function<Location, Location> subX = location -> new Location(
+      location.getX() - 1,
       location.getY(), location.getDirection());
   public static final Function<Location, Location> subY = location -> new Location(location.getX(),
       location.getY() - 1, location.getDirection());
